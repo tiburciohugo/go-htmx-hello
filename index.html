@@ -6,23 +6,88 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
-  <body>
-    <h1>Hello World!</h1>
+  <body class="container">
+    <div class="row mt-4 g-4">
+      <div class="col-8">
+        <h1 class="mb-4">Film List</h1>
 
-    <h2>Films</h2>
-    {{range .Films}}
-    <div>
-      <p>{{.Title}} ({{.Year}}) - {{.Director}}</p>
-    </div>
-    {{end}}
+        <ul
+          class="list-group fs-5 me-5"
+          id="film-list"
+        >
+          {{ range .Films }} {{ block "film-list-element" .}}
+          <li class="list-group-item bg-primary text-white">
+            {{ .Title }} ({{.Year}}) - {{ .Director }}
+          </li>
+          {{ end }} {{ end }}
+        </ul>
+      </div>
 
-    <h2>Series</h2>
-    {{range .Series}}
-    <div>
-      <p>{{.Title}} ({{.Year}}) - {{.Director}}</p>
+      <div class="col-4">
+        <h1 class="mb-4">Add Film</h1>
+        <form
+          action="/add-film"
+          method="post"
+        >
+          <div class="mb-3">
+            <label
+              for="title"
+              class="form-label"
+              >Title</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="title"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              for="director"
+              class="form-label"
+              >Director</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="director"
+              name="director"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Add
+          </button>
+        </form>
+      </div>
     </div>
-    {{end}}
+
+    <div class="row mt-4 g-4">
+      <div class="col-8">
+        <h1 class="mb-4">Actor List</h1>
+
+        <ul
+          class="list-group fs-5 me-5"
+          id="actor-list"
+        >
+          {{ range .Actors }} {{ block "actor-list-element" .}}
+          <li class="list-group item bg-primary text-white">
+            {{ .Name }} ({{ .Birth }}) - {{.Country}}
+          </li>
+          {{ end }} {{ end }}
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
