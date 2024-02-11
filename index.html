@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Hello World!</h1>
-</body>
+
+    <h2>Films</h2>
+    {{range .Films}}
+    <div>
+      <p>{{.Title}} ({{.Year}}) - {{.Director}}</p>
+    </div>
+    {{end}}
+
+    <h2>Series</h2>
+    {{range .Series}}
+    <div>
+      <p>{{.Title}} ({{.Year}}) - {{.Director}}</p>
+    </div>
+    {{end}}
+  </body>
 </html>
